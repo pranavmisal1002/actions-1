@@ -3,6 +3,7 @@ on:
   push
 jobs:
   build_job:
+    timeout-minutes: 1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -37,9 +38,6 @@ jobs:
 
   deploy_job:
     needs: test_job
-    concurrency:
-      group: production-deplyoment
-      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - name: Download Dragon test file
