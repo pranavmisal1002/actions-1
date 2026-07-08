@@ -7,9 +7,23 @@ jobs:
         steps:
             - name: checkout code
               uses: actions/checkout@v4
+
             - name: welcome message
               run: echo "Hello World"
+
             - name: List files
               run: ls
+
             - name: read file
               run: cat readme.md
+
+            - name: Generate ASCII Artwork
+              run: |
+                echo "  _____ _                 _       _     _ "
+                echo " / ____| |               | |     | |   (_)"
+                echo "| (___ | |_ ___  __ _  __| | __ _| |__  _ "
+                echo " \___ \| __/ _ \/ _\` |/ _\` |/ _\` | '_ \| |"
+                echo " ____) | ||  __/ (_| | (_| | (_| | |_) | |"
+                echo "|_____/ \__\___|\__,_|\__,_|\__,_|_.__/|_|"
+                
+                run: cowsay -f dragon "run for cover, i am a dragon...RAWRRRR" >> dragon.txt
