@@ -4,19 +4,43 @@ on:
     branches:
       - main
 jobs:
-  generate_ascii_artwork:
+  build_job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List files
-        run: ls -ltra
+      - name: insall cowsay
+        run: sudo apt-get install cowsay -y
 
-      - name: Executing shell script
-        run: |
-          chmod +x ascii-script.sh
-          ./ascii-script.sh
+      - name: Execute cowsay command
+        run: cowsay -f dragon "run for cover, I am a dragon...RAWRRRR" >> dragon.txt
+
+      - name: sleep for 30 sec
+        run: sleep 30
+    
+  test_job:
+    runs-on: ubuntu-latest
+    #needs: build_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: sleep for 10 sec
+        run: sleep 10
+
+      - name: Test file exists
+        run: grep -i "dragon" dragon.txt
+
+  deploy_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read file
+        run: cat dragon.txt
+     
+      - name: deploy
+        run: echo "Deploying...."
+        
     
       
         
