@@ -11,6 +11,8 @@ jobs:
 
       - name: insall cowsay
         run: sudo apt-get install cowsay -y
+      - name: Sleep for 58 sec
+        run: sleep 58
 
       - name: Execute cowsay command
         run: cowsay -f dragon "run for cover, I am a dragon...RAWRRRR" >> dragon.txt
